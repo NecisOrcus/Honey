@@ -61,7 +61,7 @@ function getBrowser() {
 $user_os        =   getOS();
 $user_browser   =   getBrowser();
 
-$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+$ip = $_SERVER['REMOTE_ADDR'];
 $site_refer = $_SERVER['HTTP_REFERER'];
 	if($site_refer == ""){
 		$site = "dirrect connection";
