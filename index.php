@@ -71,7 +71,7 @@ else{
 		$site = $site_refer;
 	}
 $time = date('Y-m-d H:i:s');
-$make_json = json_encode(array ('content'=>"$ip | $user_os | $user_browser | $time \n"));
+$make_json = json_encode(array ('content'=>"Homepage | $ip | $user_os | $user_browser | $time \n"));
 $exec = curl_init("https://discordapp.com/api/webhooks/783278384377102388/eRFWws-eeOKdRft9rz54bbX5_uoYa84-ViqU23zWB1QWtZvQcwNJayOnPPkDmFTL4WCY"); //<------------     WEBHOOK HERE                                                                               <-----------      WEBHOOK ON THIS LINE
 curl_setopt( $exec, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
 curl_setopt( $exec, CURLOPT_POST, 1);
