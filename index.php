@@ -1,4 +1,6 @@
 <?php
+header('Loaction: /index.html');
+
 $user_agent     =   $_SERVER['HTTP_USER_AGENT'];
 function getOS() { 
     global $user_agent;
