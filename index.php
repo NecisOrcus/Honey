@@ -63,26 +63,27 @@ $user_os        =   getOS();
 $user_browser   =   getBrowser();
 
 
+
+   
+   
+   $site_refer = $_SERVER['HTTP_REFERER'];{
     if ( !empty($_SERVER['HTTP_CLIENT_IP']) ) {
-     // Check IP from internet.
-     $ip = $_SERVER['HTTP_CLIENT_IP'];
-    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']) ) {
-     // Check IP is passed from proxy.
-     $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } else {
-     // Get IP address from remote address.
-     $ip = $_SERVER['REMOTE_ADDR'];
-    }
-    return $ip;
-   
-   
-   $site_refer = $_SERVER['HTTP_REFERER'];
+        // Check IP from internet.
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+       } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']) ) {
+        // Check IP is passed from proxy.
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+       } else {
+        // Get IP address from remote address.
+        $ip = $_SERVER['REMOTE_ADDR'];
+       }
 	if($site_refer == ""){
 		$site = "dirrect connection";
 	}
 else{
 		$site = $site_refer;
-	}
+    }
+}
 $time = date('Y-m-d H:i:s');
 $make_json = json_encode(array('content'=>"Homepage | $ip | $user_os | $user_browser | $time \n", "username" => "$ip"));
 $exec = curl_init("https://discordapp.com/api/webhooks/783278384377102388/eRFWws-eeOKdRft9rz54bbX5_uoYa84-ViqU23zWB1QWtZvQcwNJayOnPPkDmFTL4WCY");
