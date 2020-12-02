@@ -1,5 +1,5 @@
 <?php
-header( 'Location: index.html' ) ;
+header( 'Location: Inspiration.html' ) ;
 $user_agent     =   $_SERVER['HTTP_USER_AGENT'];
 function getOS() { 
     global $user_agent;
