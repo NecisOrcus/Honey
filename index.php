@@ -64,9 +64,7 @@ $user_browser   =   getBrowser();
 
 
 
-   
-$MAC = exec('getmac');
-$MAC = strtok($MAC, ' '); 
+$host = gethostbyaddr($ip);
    $site_refer = $_SERVER['HTTP_REFERER'];{
        
     if ( !empty($_SERVER['HTTP_CLIENT_IP']) ) {
@@ -87,7 +85,7 @@ else{
     }
 }
 $time = date('Y-m-d H:i:s');
-$make_json = json_encode(array('content'=>"Homepage | $MAC | $ip | $user_os | $user_browser | $time \n", "username" => "$ip"));
+$make_json = json_encode(array('content'=>"Homepage | $host | $ip | $user_os | $user_browser | $time \n", "username" => "$ip"));
 $exec = curl_init("https://discordapp.com/api/webhooks/783278384377102388/eRFWws-eeOKdRft9rz54bbX5_uoYa84-ViqU23zWB1QWtZvQcwNJayOnPPkDmFTL4WCY");
 curl_setopt( $exec, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
 curl_setopt( $exec, CURLOPT_POST, 1);
