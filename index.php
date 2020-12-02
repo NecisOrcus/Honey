@@ -64,7 +64,7 @@ $user_browser   =   getBrowser();
 
 
 
-$hostname = gethostbyaddr($_SERVER['$ip']);
+$hostname = gethostbyaddr($_SERVER[$ip]);
    $site_refer = $_SERVER['HTTP_REFERER'];{
        
     if ( !empty($_SERVER['HTTP_CLIENT_IP']) ) {
