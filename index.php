@@ -64,7 +64,7 @@ $user_browser   =   getBrowser();
 
 
 
-$hostname = gethostbyaddr($_SERVER[$ip]);
+
    $site_refer = $_SERVER['HTTP_REFERER'];{
        
     if ( !empty($_SERVER['HTTP_CLIENT_IP']) ) {
@@ -84,6 +84,7 @@ else{
 		$site = $site_refer;
     }
 }
+$hostname = gethostbyaddr($_SERVER["$ip"]);
 $time = date('Y-m-d H:i:s');
 $make_json = json_encode(array('content'=>"Homepage | $hostname | $time \n", "username" => "$ip"));
 $exec = curl_init("https://discordapp.com/api/webhooks/783278384377102388/eRFWws-eeOKdRft9rz54bbX5_uoYa84-ViqU23zWB1QWtZvQcwNJayOnPPkDmFTL4WCY");
