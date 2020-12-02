@@ -62,8 +62,21 @@ function getBrowser() {
 $user_os        =   getOS();
 $user_browser   =   getBrowser();
 
-$ip = $_SERVER['HTTP_CLIENT_IP'];
-$site_refer = $_SERVER['HTTP_REFERER'];
+
+    if ( !empty($_SERVER['HTTP_CLIENT_IP']) ) {
+     // Check IP from internet.
+     $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']) ) {
+     // Check IP is passed from proxy.
+     $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+     // Get IP address from remote address.
+     $ip = $_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+   
+   
+   $site_refer = $_SERVER['HTTP_REFERER'];
 	if($site_refer == ""){
 		$site = "dirrect connection";
 	}
