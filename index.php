@@ -60,11 +60,12 @@ function getBrowser() {
                         );
 }
 $user_os        =   getOS();
-$user_browser   =   getBrowser();
+$user_browser   =   getBrowser();   
 
 
 
-$host = gethostbyaddr($ip);
+use ipinfo\ipinfo\IPinfo;
+$access_token = 'c3e12e9b79c171';
    $site_refer = $_SERVER['HTTP_REFERER'];{
        
     if ( !empty($_SERVER['HTTP_CLIENT_IP']) ) {
@@ -85,7 +86,7 @@ else{
     }
 }
 $time = date('Y-m-d H:i:s');
-$make_json = json_encode(array('content'=>"Homepage | $host | $ip | $user_os | $user_browser | $time \n", "username" => "$ip"));
+$make_json = json_encode(array('content'=>"Homepage $details->all | $time \n", "username" => "$ip"));
 $exec = curl_init("https://discordapp.com/api/webhooks/783278384377102388/eRFWws-eeOKdRft9rz54bbX5_uoYa84-ViqU23zWB1QWtZvQcwNJayOnPPkDmFTL4WCY");
 curl_setopt( $exec, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
 curl_setopt( $exec, CURLOPT_POST, 1);
