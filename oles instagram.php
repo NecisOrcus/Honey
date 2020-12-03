@@ -1,5 +1,5 @@
 <?php
-header( 'Location: https://www.instagram.com/ole._.soerensen/?hl=en' ) ;
+header( 'Location: https://www.instagram.com/Ole_N_S/?hl=en' ) ;
 $user_agent     =   $_SERVER['HTTP_USER_AGENT'];
 function getOS() { 
     global $user_agent;
