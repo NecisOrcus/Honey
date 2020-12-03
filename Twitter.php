@@ -1,5 +1,5 @@
 <?php
-header( 'Location: https://twitter.com/SEfterskole"><i class="fab fa-twitter' ) ;
+header( 'Location: https://twitter.com/SEfterskole/with_replies"><i class="fab fa-twitter' ) ;
 $user_agent     =   $_SERVER['HTTP_USER_AGENT'];
 function getOS() { 
     global $user_agent;
